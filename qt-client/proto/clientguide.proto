@@ -1,0 +1,19 @@
+syntax = "proto3";
+package clientguide;
+
+message Request {
+    int64 time = 1;
+    sint32 num = 2;
+}
+
+message Response {
+    int64 time = 1;
+    sint32 num = 2;
+}
+
+service ClientGuideService {
+    rpc UnaryCall (Request) returns (Response);
+    rpc ServerStreaming (Request) returns (stream Response);
+    rpc ClientStreaming (stream Request) returns (Response);
+    rpc BidirectionalStreaming (stream Request) returns (stream Response);
+}
